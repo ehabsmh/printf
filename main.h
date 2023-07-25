@@ -20,8 +20,9 @@
 struct format_spec
 {
 	char specifier;
-	int (*print_format)(va_list , int *, char *);
+	int (*print_format)(va_list, int *, char *);
 };
+
 typedef struct format_spec fmt;
 
 /* CUSTOM PRINTF FUNCTION */
