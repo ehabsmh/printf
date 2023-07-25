@@ -46,6 +46,7 @@ int print_octal(va_list args, int *curr_index, char *buffer);
 int print_hexadecimal(va_list args, int *curr_index, char *buffer);
 int print_hexadecimal_upper(va_list args, int *curr_index, char *buffer);
 int print_address(va_list args, int *curr_index, char *buffer);
+int print_S(va_list args, int *curr_index, char *buffer);
 
 /* HANDLE PRINTF */
 int format_handler(va_list, const char *);
