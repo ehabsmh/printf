@@ -34,3 +34,30 @@ int print_binary(va_list args, int *curr_index, char *buffer)
 	buffer[*curr_index] = '\0';
 	return (length);
 }
+
+/**
+ * print_unsigned - prints unsigned int
+ * @args:  va_list the arguments list
+ *
+ * Return: length of printed string
+ */
+int print_unsigned(va_list args, int *curr_index, char *buffer)
+{
+  unsigned int num, length, i;
+  char unsigned_container[33];
+
+  num = va_arg(args, unsigned int);
+
+  length = unsigned_handler(num, unsigned_container);
+
+  for (i = 0; i < length; i++)
+  {
+    if (*curr_index < BUFFER_SIZE - 1)
+    {
+      buffer[*curr_index] = unsigned_container[i];
+      (*curr_index)++;
+    }
+  }
+
+  return (length);
+}
