@@ -39,8 +39,12 @@ char *_strcpy(char *, char *);
 int print_char(va_list args, int *curr_index, char *buffer);
 int print_str(va_list args, int *curr_index, char *buffer);
 int print_percent(va_list args, int *curr_index, char *buffer);
+int print_integer(va_list *args, int *curr_index, char *buffer);
 
 /* HANDLE PRINTF */
 int format_handler(va_list, const char *);
+
+/* HANDLE WRITE */
+char *int_to_str(int, char *);
 
 #endif
