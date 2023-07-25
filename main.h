@@ -43,4 +43,8 @@ int print_percent(va_list args, int *curr_index, char *buffer);
 /* HANDLE PRINTF */
 int format_handler(va_list, const char *);
 
+/* HANDLE WRITE */
+char *int_to_str(int n, char *converted_str);
+
+
 #endif
