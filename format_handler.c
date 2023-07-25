@@ -15,7 +15,7 @@ int format_handler(va_list args, const char *format)
 
 	fmt format_sp[] = {
 			{'c', print_char}, {'s', print_str}, {'%', print_percent},
-			{'d', print_integer}, {'i', print_integer},
+			{'d', print_integer}, {'i', print_integer}, {'b', print_binary},
 			{'\0', NULL}};
 
 	for (i = 0; format[i] != '\0'; i++)
