@@ -8,11 +8,11 @@
  *
  * Return: 1 byte
  */
-int print_char(va_list *args, int *curr_index, char *buffer)
+int print_char(va_list args, int *curr_index, char *buffer)
 {
 	int c;
 
-	c = va_arg(*args, int);
+	c = va_arg(args, int);
 
 	if (*curr_index < BUFFER_SIZE - 1)
 	{
@@ -33,10 +33,10 @@ int print_char(va_list *args, int *curr_index, char *buffer)
  *
  * Return: length of the string
  */
-int print_str(va_list *args, int *curr_index, char *buffer)
+int print_str(va_list args, int *curr_index, char *buffer)
 {
 	int i;
-	char *str = va_arg(*args, char *);
+	char *str = va_arg(args, char *);
 
 	if (str == NULL)
 		str = "(null)";
@@ -61,7 +61,7 @@ int print_str(va_list *args, int *curr_index, char *buffer)
  *
  * Return: 1 byte
  */
-int print_percent(va_list *args __attribute__((unused)), int *curr_index,
+int print_percent(va_list args __attribute__((unused)), int *curr_index,
 									char *buffer)
 {
 

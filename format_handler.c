@@ -7,10 +7,10 @@
  *
  * Return: length of the output
 */
-int format_handler(va_list *args, const char *format)
+int format_handler(va_list args, const char *format)
 {
 	int i, j, output_len = 0, buffer_index = 0;
-	int (*ptr)(va_list *, int *, char *);
+	int (*ptr)(va_list, int *, char *);
 	char buffer[BUFFER_SIZE];
 
 	fmt format_sp[] = {

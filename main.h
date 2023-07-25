@@ -20,7 +20,7 @@
 struct format_spec
 {
 	char specifier;
-	int (*print_format)(va_list *, int *, char *);
+	int (*print_format)(va_list , int *, char *);
 };
 
 typedef struct format_spec fmt;
@@ -36,11 +36,11 @@ void rev_string(char *);
 char *_strcpy(char *, char *);
 
 /* HANDLE PRINT */
-int print_char(va_list *args, int *curr_index, char *buffer);
-int print_str(va_list *args, int *curr_index, char *buffer);
-int print_percent(va_list *args, int *curr_index, char *buffer);
+int print_char(va_list args, int *curr_index, char *buffer);
+int print_str(va_list args, int *curr_index, char *buffer);
+int print_percent(va_list args, int *curr_index, char *buffer);
 
 /* HANDLE PRINTF */
-int format_handler(va_list *, const char *);
+int format_handler(va_list, const char *);
 
 #endif

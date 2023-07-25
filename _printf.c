@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	va_start(args, format);
-	output_len = format_handler(&args, format);
+	output_len = format_handler(args, format);
 	/* flags */
 	/* width */
 	/* precision */
