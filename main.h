@@ -48,5 +48,7 @@ int format_handler(va_list, const char *);
 /* HANDLE WRITE */
 char *int_to_str(int, char *);
 char *base_handler(unsigned int, int, char *);
+unsigned int unsigned_handler(unsigned int, char *);
+char *hexadecimal_handler(unsigned int, char *, char *);
 
 #endif

@@ -102,3 +102,81 @@ char *base_handler(unsigned int n, int base, char *converted_str)
 	converted_str[i] = '\0';
 	return (converted_str);
 }
+
+/**
+ * unsigned_handler - converting integer to string
+ * @n : the number to be converted
+ * @converted_str: the converted_str to store the converted integer
+ *
+ * Return: length of n plus the sign if n is negative
+ */
+unsigned int unsigned_handler(unsigned int n, char *converted_str)
+{
+	unsigned int tens = 10, len_calculator = n, n_len = 0;
+	unsigned int digit = n, n_power, i = 0;
+
+
+	if (n == 0)
+	{
+		converted_str[0] = '0';
+		return (1);
+	}
+
+	while (len_calculator)
+	{
+		n_len++;
+		len_calculator /= tens;
+	}
+
+	n_power = power_of_10(n_len);
+
+	while (i < n_len)
+	{
+		n_power /= 10;
+		digit = n / n_power;
+		digit %= 10;
+		converted_str[i] = digit + '0';
+		i++;
+	}
+
+	return (n_len);
+}
+
+/**
+ * hexadecimal_handler - converting integer to hexadecimal
+ * @n : the number to be converted
+ * @converted_str: the converted_str to store the converted hex
+ *@hex: the hexcode
+ * Return: the converted string
+ */
+char *hexadecimal_handler(unsigned int n, char *converted_str, char *hex)
+{
+	unsigned int i = 0;
+	unsigned int digit = 0;
+
+	/* store 0 in the converted_str if n is 0 */
+	if (n == 0)
+	{
+		converted_str[0] = '0';
+		converted_str[1] = '\0';
+		return (converted_str);
+	}
+
+	/* convert integer to its base */
+	while (n)
+	{
+		/* Extract the base digit */
+		digit = n % 16;
+
+		/* Store it in the converted_str */
+		converted_str[i] = hex[digit];
+
+		n /= 16;
+		i++;
+	}
+
+	rev_string(converted_str);
+	converted_str[i] = '\0';
+
+	return (converted_str);
+}
