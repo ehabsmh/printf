@@ -50,3 +50,55 @@ char *int_to_str(int n, char *converted_str)
 	converted_str[i + is_negative] = '\0';
 	return (converted_str);
 }
+
+/**
+ * base_handler - converts the number to a specified base
+ * @n: the number to be converted
+ * @base: the base to be converted to
+ * @converted_str: converted string
+ *
+ * Return: address of the string
+*/
+char *base_handler(unsigned int n, int base, char *converted_str)
+{
+
+	unsigned int i = 0, digit, n_cpy = n;
+
+	/* store 0 in the converted_str if n is 0 */
+	if (n == 0)
+	{
+		converted_str = malloc(sizeof(char) * 2);
+		converted_str[0] = '0';
+		converted_str[1] = '\0';
+		return (converted_str);
+	}
+
+	/* calculate the length */
+	while (n_cpy)
+	{
+		n_cpy /= base;
+		i++;
+	}
+
+	converted_str = malloc(sizeof(char) * (i + 1));
+
+	if (!converted_str)
+		return (NULL);
+
+	i = 0;
+
+	while (n)
+	{
+		/* Extract the base digit */
+		digit = n % base;
+
+		/* Store it in the converted_str */
+		converted_str[i] = digit + '0';
+		n /= base;
+		i++;
+	}
+
+	rev_string(converted_str);
+	converted_str[i] = '\0';
+	return (converted_str);
+}
