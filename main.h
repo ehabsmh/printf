@@ -1,13 +1,13 @@
 #ifndef MAIN_H
 #define MAIN_H
+#define BUFFER_SIZE 1024
+
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <limits.h>
 #include <string.h>
-
-#define BUFFER_SIZE 1024
 
 /**
  * struct format_spec - struct for format spec handles
@@ -22,7 +22,6 @@ struct format_spec
 	char specifier;
 	int (*print_format)(va_list , int *, char *);
 };
-
 typedef struct format_spec fmt;
 
 /* CUSTOM PRINTF FUNCTION */
