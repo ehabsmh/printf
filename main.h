@@ -23,7 +23,7 @@ struct format_spec
 	int (*print_format)(va_list *, int *, char *);
 };
 
-typdef struct format_spec fmt;
+typedef struct format_spec fmt;
 
 /* CUSTOM PRINTF FUNCTION */
 int _printf(const char *, ...);
