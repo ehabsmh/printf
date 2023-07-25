@@ -77,31 +77,33 @@ int print_percent(va_list args __attribute__((unused)), int *curr_index,
 /**
  * print_integer - prints an integer
  * @args: pointer to the arguments list
+ * @curr_index: index of buffer
+ * @buffer: stores the output * Return: length of the string
  *
- * Return: length of the string
+ * Return: length
  */
-int print_integer(va_list *args, int *curr_index, char *buffer)
+int print_integer(va_list args, int *curr_index, char *buffer)
 {
-  int n, i;
+	int n, i;
 
-  char *int_container = NULL;
+	char *int_container = NULL;
 
-  n = va_arg(*args, int);
+	n = va_arg(args, int);
 
-  int_container = int_to_str(n, int_container);
+	int_container = int_to_str(n, int_container);
 
-  /* fill the integer converted to string in the buffer */
-  for (i = 0; int_container[i] != '\0'; i++)
-  {
-    if (*curr_index < BUFFER_SIZE - 1)
-    {
-      buffer[*curr_index] = int_container[i];
-      (*curr_index)++;
-    }
-  }
+	/* fill the integer converted to string in the buffer */
+	for (i = 0; int_container[i] != '\0'; i++)
+	{
+		if (*curr_index < BUFFER_SIZE - 1)
+		{
+			buffer[*curr_index] = int_container[i];
+			(*curr_index)++;
+		}
+	}
 
-  buffer[*curr_index] = '\0';
-  
-  free(int_container);
-  return (i);
+	buffer[*curr_index] = '\0';
+
+	free(int_container);
+	return (i);
 }

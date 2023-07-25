@@ -2,14 +2,33 @@
 
 /**
  * int_to_str - converting integer to string
- * @n : the number to be converted
+ * @n: the number to be converted
  * @converted_str: to store the converted integer
  *
  * Return: length of n plus the sign if n is negative
  */
 char *int_to_str(int n, char *converted_str)
 {
-	int n_len = 0, is_negative = 0, n_copy, i;
+	int len_calculator, n_len = 0, abs_n = n, i = 0;
+	int n_power, is_negative = 0;
+
+	len_calculator = n;
+
+	while (len_calculator)
+	{
+		n_len++;
+		len_calculator /= 10;
+	}
+
+	if (n < 0)
+	{
+		is_negative = 1;
+		abs_n = -n;
+		n = -n;
+	}
+	converted_str = malloc(sizeof(char) * (n_len + is_negative + 1));
+	if (!converted_str)
+		return (0);
 
 	if (n == 0)
 	{
@@ -17,33 +36,17 @@ char *int_to_str(int n, char *converted_str)
 		converted_str[1] = '\0';
 		return (converted_str);
 	}
-
-	if (n < 0)
-	{
-		is_negative = 1;
-		n = -n;
-	}
-
-	/* Calculate the length of the number */
-	n_copy = n;
-	while (n_copy)
-	{
-		n_len++;
-		n_copy /= 10;
-	}
-
-	/* Start filling the converted_str buffer */
-	i = n_len + is_negative;
-	converted_str[i] = '\0';
-
-	while (i-- > is_negative)
-	{
-		converted_str[i] = n % 10 + '0';
-		n /= 10;
-	}
-
 	if (is_negative)
 		converted_str[0] = '-';
-
+	n_power = power_of_10(n_len);
+	while (i < n_len)
+	{
+		n_power /= 10;
+		abs_n = n / n_power;
+		abs_n %= 10;
+		converted_str[i + is_negative] = abs_n + '0';
+		i++;
+	}
+	converted_str[i + is_negative] = '\0';
 	return (converted_str);
 }
