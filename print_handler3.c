@@ -94,3 +94,45 @@ int print_reverse(va_list args, int *curr_index, char *buffer)
 	buffer[*curr_index] = '\0';
 	return (i);
 }
+
+/**
+ * print_rot13 - prints rot13 of a string
+ * @args:  va_list the arguments list
+ * @curr_index: index of buffer
+ * @buffer: stores the output
+ *
+ * Return: length of printed string
+ */
+int print_rot13(va_list args, int *curr_index, char *buffer)
+{
+	char *str;
+	int str_len, i;
+	char *str_cpy;
+
+	str = va_arg(args, char *);
+
+	if (str == NULL)
+		str = "(null)";
+
+	str_len = _strlen(str);
+
+	str_cpy = malloc(sizeof(char) * (str_len + 1));
+	if (str_cpy == NULL)
+		return (0);
+
+	_strcpy(str_cpy, str);
+
+	rot13(str_cpy);
+
+	for (i = 0; str_cpy[i] != '\0'; i++)
+	{
+		if (*curr_index < BUFFER_SIZE - 1)
+		{
+			buffer[*curr_index] = str_cpy[i];
+			(*curr_index)++;
+		}
+	}
+	buffer[*curr_index] = '\0';
+	return (i);
+
+}

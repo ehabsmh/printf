@@ -34,6 +34,7 @@ int _strlen(char *);
 int power_of_10(int);
 void rev_string(char *);
 char *_strcpy(char *, char *);
+char *rot13(char *s);
 
 /* HANDLE PRINT */
 int print_char(va_list args, int *curr_index, char *buffer);
@@ -48,6 +49,7 @@ int print_hexadecimal_upper(va_list args, int *curr_index, char *buffer);
 int print_address(va_list args, int *curr_index, char *buffer);
 int print_S(va_list args, int *curr_index, char *buffer);
 int print_reverse(va_list args, int *curr_index, char *buffer);
+int print_rot13(va_list args, int *curr_index, char *buffer);
 
 /* HANDLE PRINTF */
 int format_handler(va_list, const char *);
