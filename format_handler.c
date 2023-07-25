@@ -18,6 +18,7 @@ int format_handler(va_list args, const char *format)
 			{'d', print_integer}, {'i', print_integer}, {'b', print_binary},
 			{'u', print_unsigned}, {'o', print_octal}, {'x', print_hexadecimal},
 			{'X', print_hexadecimal_upper}, {'S', print_S}, {'p', print_address},
+			{'r', print_reverse},
 			{'\0', NULL}};
 
 	for (i = 0; format[i] != '\0'; i++)
