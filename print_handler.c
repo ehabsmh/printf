@@ -107,3 +107,49 @@ int print_integer(va_list args, int *curr_index, char *buffer)
 	free(int_container);
 	return (i);
 }
+
+/**
+ * print_S - prints the string from argument list
+ * @args: pointer to the arguments list
+ *
+ * Return: length of the string
+ */
+int print_S(va_list args, int *curr_index, char *buffer)
+{
+  int i, j;
+  char *str = va_arg(args, char *);
+  char *hex = "0123456789ABCDEF";
+  char *hexadecimal;
+
+  if (str == NULL)
+    str = "(null)";
+
+  for (i = 0; str[i] != '\0'; i++)
+  {
+    if (*curr_index < BUFFER_SIZE - 1)
+    {
+      if (str[i] < 32 || str[i] >= 127)
+      {
+        buffer[*curr_index] = '\\';
+        (*curr_index)++;
+        buffer[*curr_index] = 'x';
+        (*curr_index)++;
+        buffer[*curr_index] = '0';
+        (*curr_index)++;
+        hexadecimal = hexadecimal_handler(str[i], hexadecimal, hex);
+        for (j = 0; hexadecimal[j] != '\0'; j++)
+        {
+          buffer[*curr_index] = hexadecimal[j];
+          (*curr_index)++;
+        }
+      }
+      else
+      {
+        buffer[*curr_index] = str[i];
+        (*curr_index)++;
+      }
+    }
+  }
+  buffer[*curr_index] = '\0';
+  return (i);
+}
