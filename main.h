@@ -55,9 +55,11 @@ int print_rot13(va_list args, int *curr_index, char *buffer);
 int format_handler(va_list, const char *);
 
 /* HANDLE WRITE */
-char *int_to_str(int, char *);
+char *int_to_str(int n);
 char *base_handler(unsigned int, int, char *);
-unsigned int unsigned_handler(unsigned int, char *);
+unsigned int unsigned_handler(unsigned int n, char *converted_str);
 char *hexadecimal_handler(unsigned int, char *, char *);
+
+int handle_buffer(char c, char *buffer, int *buff_i);
 
 #endif

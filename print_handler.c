@@ -14,15 +14,7 @@ int print_char(va_list args, int *curr_index, char *buffer)
 
 	c = va_arg(args, int);
 
-	if (*curr_index < BUFFER_SIZE - 1)
-	{
-		buffer[*curr_index] = c;
-		(*curr_index)++;
-	}
-
-	buffer[*curr_index] = '\0';
-
-	return (1);
+	return (handle_buffer(c, buffer, curr_index));
 }
 
 /**
@@ -43,13 +35,8 @@ int print_str(va_list args, int *curr_index, char *buffer)
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
-		if (*curr_index < BUFFER_SIZE - 1)
-		{
-			buffer[*curr_index] = str[i];
-			(*curr_index)++;
-		}
+		handle_buffer(str[i], buffer, curr_index);
 	}
-	buffer[*curr_index] = '\0';
 	return (i);
 }
 
@@ -64,14 +51,7 @@ int print_str(va_list args, int *curr_index, char *buffer)
 int print_percent(va_list args __attribute__((unused)), int *curr_index,
 									char *buffer)
 {
-
-	if (*curr_index < BUFFER_SIZE - 1)
-	{
-		buffer[*curr_index] = '%';
-		(*curr_index)++;
-	}
-	buffer[*curr_index] = '\0';
-	return (1);
+	return (handle_buffer('%', buffer, curr_index));
 }
 
 /**
@@ -90,19 +70,13 @@ int print_integer(va_list args, int *curr_index, char *buffer)
 
 	n = va_arg(args, int);
 
-	int_container = int_to_str(n, int_container);
+	int_container = int_to_str(n);
 
 	/* fill the integer converted to string in the buffer */
 	for (i = 0; int_container[i] != '\0'; i++)
 	{
-		if (*curr_index < BUFFER_SIZE - 1)
-		{
-			buffer[*curr_index] = int_container[i];
-			(*curr_index)++;
-		}
+		handle_buffer(int_container[i], buffer, curr_index);
 	}
-
-	buffer[*curr_index] = '\0';
 
 	free(int_container);
 	return (i);

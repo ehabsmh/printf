@@ -31,23 +31,14 @@ int print_address(va_list args, int *curr_index, char *buffer)
 
 	for (i = 0; i < num_zeroes; i++)
 	{
-		if (*curr_index < BUFFER_SIZE - 1)
-		{
-			buffer[*curr_index] = '0';
-			(*curr_index)++;
-		}
+		handle_buffer('0', buffer, curr_index);
 	}
 
 	for (i = 0; address[i] != '\0'; i++)
 	{
-		if (*curr_index < BUFFER_SIZE - 1)
-		{
-			buffer[*curr_index] = address[i];
-			(*curr_index)++;
-		}
+		handle_buffer(address[i], buffer, curr_index);
 	}
 
-	buffer[*curr_index] = '\0';
 	free(address);
 
 	return (i);
@@ -78,20 +69,16 @@ int print_reverse(va_list args, int *curr_index, char *buffer)
 	if (str_cpy == NULL)
 		return (0);
 
-
 	_strcpy(str_cpy, str);
 
 	rev_string(str_cpy);
 
 	for (i = 0; str_cpy[i] != '\0'; i++)
 	{
-		if (*curr_index < BUFFER_SIZE - 1)
-		{
-			buffer[*curr_index] = str_cpy[i];
-			(*curr_index)++;
-		}
+		handle_buffer(str_cpy[i], buffer, curr_index);
 	}
-	buffer[*curr_index] = '\0';
+
+	free(str_cpy);
 	return (i);
 }
 
@@ -126,13 +113,9 @@ int print_rot13(va_list args, int *curr_index, char *buffer)
 
 	for (i = 0; str_cpy[i] != '\0'; i++)
 	{
-		if (*curr_index < BUFFER_SIZE - 1)
-		{
-			buffer[*curr_index] = str_cpy[i];
-			(*curr_index)++;
-		}
+		handle_buffer(str_cpy[i], buffer, curr_index);
 	}
-	buffer[*curr_index] = '\0';
-	return (i);
 
+	free(str_cpy);
+	return (i);
 }

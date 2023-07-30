@@ -21,17 +21,11 @@ int print_binary(va_list args, int *curr_index, char *buffer)
 
 	for (i = 0; i < length; i++)
 	{
-		if (*curr_index < BUFFER_SIZE - 1)
-		{
-			buffer[*curr_index] = binary_container[i];
-			(*curr_index)++;
-		}
-
+		handle_buffer(binary_container[i], buffer, curr_index);
 	}
 
 	free(binary_container);
 
-	buffer[*curr_index] = '\0';
 	return (length);
 }
 
@@ -54,11 +48,7 @@ int print_unsigned(va_list args, int *curr_index, char *buffer)
 
 	for (i = 0; i < length; i++)
 	{
-		if (*curr_index < BUFFER_SIZE - 1)
-		{
-			buffer[*curr_index] = unsigned_container[i];
-			(*curr_index)++;
-		}
+		handle_buffer(unsigned_container[i], buffer, curr_index);
 	}
 
 	return (length);
@@ -88,14 +78,9 @@ int print_octal(va_list args, int *curr_index, char *buffer)
 
 	for (i = 0; i < length; i++)
 	{
-		if (*curr_index < BUFFER_SIZE - 1)
-		{
-			buffer[*curr_index] = octal_container[i];
-			(*curr_index)++;
-		}
+		handle_buffer(octal_container[i], buffer, curr_index);
 	}
 
-	buffer[*curr_index] = '\0';
 	free(octal_container);
 
 	return (length);
@@ -112,22 +97,20 @@ int print_octal(va_list args, int *curr_index, char *buffer)
 int print_hexadecimal(va_list args, int *curr_index, char *buffer)
 {
 	unsigned int num, length, i;
-	char hexadecimal_container[33];
-	char *hexadecimal;
+
+	char *hexadecimal_container = NULL;
 	char *hex = "0123456789abcdef";
 
 	num = va_arg(args, unsigned int);
-	hexadecimal = hexadecimal_handler(num, hexadecimal_container, hex);
-	length = _strlen(hexadecimal);
+	hexadecimal_container = hexadecimal_handler(num, hexadecimal_container, hex);
+	length = _strlen(hexadecimal_container);
 
 	for (i = 0; i < length; i++)
 	{
-		if (*curr_index < BUFFER_SIZE - 1)
-		{
-			buffer[*curr_index] = hexadecimal_container[i];
-			(*curr_index)++;
-		}
+		handle_buffer(hexadecimal_container[i], buffer, curr_index);
 	}
+
+	free(hexadecimal_container);
 
 	return (length);
 }
@@ -143,22 +126,20 @@ int print_hexadecimal(va_list args, int *curr_index, char *buffer)
 int print_hexadecimal_upper(va_list args, int *curr_index, char *buffer)
 {
 	unsigned int num, length, i;
-	char hexadecimal_container[33];
-	char *hexadecimal;
+
+	char *hexadecimal_container = NULL;
 	char *hex = "0123456789ABCDEF";
 
 	num = va_arg(args, unsigned int);
-	hexadecimal = hexadecimal_handler(num, hexadecimal_container, hex);
-	length = _strlen(hexadecimal);
+	hexadecimal_container = hexadecimal_handler(num, hexadecimal_container, hex);
+	length = _strlen(hexadecimal_container);
 
 	for (i = 0; i < length; i++)
 	{
-		if (*curr_index < BUFFER_SIZE - 1)
-		{
-			buffer[*curr_index] = hexadecimal_container[i];
-			(*curr_index)++;
-		}
+		handle_buffer(hexadecimal_container[i], buffer, curr_index);
 	}
+
+	free(hexadecimal_container);
 
 	return (length);
 }

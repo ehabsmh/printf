@@ -10,7 +10,7 @@
 int format_handler(va_list args, const char *format)
 {
 	int i, j, output_len = 0, buffer_index = 0;
-	int (*ptr)(va_list, int *, char *);
+	int (*ptr)(va_list, int *, char *) = NULL;
 	char buffer[BUFFER_SIZE];
 
 	fmt format_sp[] = {
@@ -30,22 +30,22 @@ int format_handler(va_list args, const char *format)
 				if (format[i] == format_sp[j].specifier)
 				{
 					ptr = format_sp[j].print_format;
-					output_len += (*ptr)(args, &buffer_index, buffer);
+					(*ptr)(args, &buffer_index, buffer);
 					break;
 				}
+			}
+			if (!ptr)
+			{
+				handle_buffer(format[i], buffer, &buffer_index);
 			}
 		}
 		else
 		{
-			if (buffer_index < BUFFER_SIZE - 1)
-			{
-				buffer[buffer_index] = format[i];
-				buffer_index++;
-			}
-			output_len++;
+			handle_buffer(format[i], buffer, &buffer_index);
 		}
 	}
 	buffer[buffer_index] = '\0';
+	output_len = _strlen(buffer);
 	write(1, buffer, buffer_index);
 	return (output_len);
 }
